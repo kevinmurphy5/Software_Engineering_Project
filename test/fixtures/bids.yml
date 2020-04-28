@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: bids
+#
+#  id         :bigint           not null, primary key
+#  bid_amount :decimal(, )
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  bid_amount: 9.99
+
+two:
+  bid_amount: 9.99
