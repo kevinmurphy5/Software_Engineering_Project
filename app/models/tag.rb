@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
+    has_many :auctiontag, dependent: :destroy
 end

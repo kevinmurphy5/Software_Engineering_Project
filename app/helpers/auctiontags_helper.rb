@@ -1,0 +1,2 @@
+module AuctiontagsHelper
+end

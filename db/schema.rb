@@ -10,11 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_04_28_223647) do
+ActiveRecord::Schema.define(version: 2020_04_29_000755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auctions", force: :cascade do |t|
+    t.string "item_name"
+    t.string "item_description"
+    t.string "image_path"
+    t.decimal "start_price"
+    t.decimal "win_price"
+    t.datetime "auction_ends"
+    t.boolean "auction_open_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_auctions_on_user_id"
+  end
+
+  create_table "auctiontags", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "auction_id"
+    t.bigint "tag_id"
+    t.index ["auction_id"], name: "index_auctiontags_on_auction_id"
+    t.index ["tag_id"], name: "index_auctiontags_on_tag_id"
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.decimal "bid_amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "auction_id"
+    t.index ["auction_id"], name: "index_bids_on_auction_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.float "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "auction_id"
+    t.bigint "user_id"
+    t.index ["auction_id"], name: "index_reviews_on_auction_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,37 +76,13 @@ ActiveRecord::Schema.define(version: 2020_04_28_223647) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    
-  create_table "auctions", force: :cascade do |t|
-    t.string "item_name"
-    t.string "item_description"
-    t.string "image_path"
-    t.decimal "start_price"
-    t.decimal "win_price"
-    t.datetime "auction_ends"
-    t.boolean "auction_open_status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "bids", force: :cascade do |t|
-    t.decimal "bid_amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
-    t.float "rating"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "tag"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
+  add_foreign_key "auctions", "users"
+  add_foreign_key "auctiontags", "auctions"
+  add_foreign_key "auctiontags", "tags"
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
+  add_foreign_key "reviews", "auctions"
+  add_foreign_key "reviews", "users"
 end

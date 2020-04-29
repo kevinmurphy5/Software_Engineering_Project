@@ -1,0 +1,2 @@
+class AuctiontagsController < ApplicationController
+end
