@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_235801) do
+ActiveRecord::Schema.define(version: 2020_04_29_000217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 2020_04_28_235801) do
     t.decimal "bid_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "auction_id"
+    t.index ["auction_id"], name: "index_bids_on_auction_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -73,4 +77,6 @@ ActiveRecord::Schema.define(version: 2020_04_28_235801) do
   add_foreign_key "auctions", "users"
   add_foreign_key "auctiontags", "auctions"
   add_foreign_key "auctiontags", "tags"
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
 end
