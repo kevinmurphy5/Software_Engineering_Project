@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!, except: [:welcome]
+  before_action :authenticate_user!, except: [:welcome, :index]
 
   def welcome
     
