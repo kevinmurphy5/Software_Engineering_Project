@@ -27,4 +27,6 @@ class Auction < ApplicationRecord
     has_many :auctiontags, dependent: :destroy
     has_many :bids, dependent: :destroy
     has_many :reviews, dependent: :destroy
+
+    validates :item_name, :start_price, :win_price, :auction_ends, :auction_open_status, presence: true
 end

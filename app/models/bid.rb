@@ -22,4 +22,12 @@
 class Bid < ApplicationRecord
     belongs_to :user
     belongs_to :auction
+
+    validates :bid_amount, :auction_id, :user_id, presence: true
+
+    # validate :higher_than_other_bids
+
+    # def higher_than_other_bids
+    #     return Bid.where(auction_id: self.auction_id).where("bid_amount >= ?", :self.bid_amount).nil ? true : false
+    # end
 end

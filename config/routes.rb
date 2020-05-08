@@ -18,5 +18,6 @@ Rails.application.routes.draw do
  	get 'reviews/:id', to: 'reviews#details', as: 'review'
 	  
 	get 'bids', to: 'bids#index', as: 'bids'
+	post 'bids', to: 'bids#create'
   
 end
