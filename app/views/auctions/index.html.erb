@@ -63,6 +63,11 @@
             </div>
         </nav>
 
+        <% if auctions.length == 0 %>
+        
+        <h2>You don't have any auctions!</h2>
+
+        <% else %>
         <table class="table">
             <tr>
                 <th>Item Number</th>
@@ -87,5 +92,6 @@
             <% end %>
 
         </table>
+        <% end %>
     </body>
 </html>
