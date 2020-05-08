@@ -63,6 +63,10 @@
                 </div>
             </div>
         </nav>
+        <br>
+        <%= button_to "Create New Auction", new_auction_path, :class => "btn btn-dark", :method => "get" %>
+        <br>
+
 
         <% if auctions.length == 0 %>
         
