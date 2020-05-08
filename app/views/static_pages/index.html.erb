@@ -71,23 +71,25 @@
         <% else %>
         <table class="table">
             <tr>
-                <th>Item Image</th>
+                <th>Item ID</th>
                 <th>Item Name</th>
                 <th>Item Description</th>
                 <th>Start Price</th>
                 <th>Win Price</th>
                 <th>Auction Open</th>
+                <th>Details</th>
             </tr>
 
-            <% auctions.each do |a, index| %>
+            <% auctions.each do |a| %>
 
             <tr>
-                <td><%= index %><br>
+                <td><%= a.id %><br>
                 <td><%= a.item_name %>
                 <td><%= a.item_description %>
                 <td><%= a.start_price %>
                 <td><%= a.win_price == 0 ? "Not closed" : a.win_price %>
                 <td><%= a.auction_open_status ? "Yes" : "No" %>
+                <td><%= link_to "Details", auction_path(a)%></td>
             </tr>
 
             <% end %>
