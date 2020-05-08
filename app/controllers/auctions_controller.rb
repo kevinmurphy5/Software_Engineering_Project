@@ -11,8 +11,9 @@ class AuctionsController < ApplicationController
     def details
         auction = Auction.find(params[:id])
         bids = auction.bids
+        bid = Bid.new
         respond_to do |format|
-            format.html {render :details, locals: {auction: auction, bids: bids}}
+            format.html {render :details, locals: {auction: auction, bids: bids, bid: bid}}
         end
     end
 

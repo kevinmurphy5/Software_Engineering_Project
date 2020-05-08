@@ -32,18 +32,30 @@
 
         <span>Item Name: <%= auction.item_name%>            </span><br>
         Description: <%= auction.item_description%>         </span><br>
-        <% if auction.auction_open_status %>
+        <% if  auction.win_price != 0 %>
+            <% if auction.auction_open_status%>
 
-        <span>Win Price: <%= auction.win_price%>            </span><br>
+            <span>Win Price: <%= auction.win_price%>            </span><br>
 
-        <% else %>
+            <% else %>
 
-        <span class="text-muted">Win Price: <%= auction.win_price%>     </span><br>
+            <span class="text-muted">Win Price: <%= auction.win_price%>     </span><br>
 
+            <% end %>
         <% end %>
 		<br><br><br>
 
+        <% if auction.auction_open_status %>
+            <%= form_with model: bid, url: bids_path, method: :post, local: true, scope: :bid do |f|%>
+                <%= f.label :bid_amount%>
+                <%= f.number_field :bid_amount%>
 
+                <%= f.hidden_field :auction_id, :value => auction.id%>
+
+                <%= f.submit "Place Bid", :class => "btn btn-dark btn-sm" %>
+            <% end %>
+        <% end %>
+        <br>
         <% if bids.length > 0%>
         <table class="table">
             <tr>
@@ -53,7 +65,7 @@
             <% bids.each do |b|%>
             <tr>
                 <td><%= b.user_id %></td>
-                <td><%= b.bid_amount %></td>
+                <td>$ <%= b.bid_amount %></td>
             </tr>
             <% end %>
         </table>

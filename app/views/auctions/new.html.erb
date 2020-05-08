@@ -29,7 +29,7 @@
 
         <h5>Creating New Auction</h5>
 
-        <%= form_with url: auctions_path, method: :post, local: true, scope: :auction do |f| %>
+        <%= form_with model: auction, url: auctions_path, method: :post, local: true, scope: :auction do |f| %>
             <div>
                 <%= f.label :item_name %><br>
                 <%= f.text_field :item_name %>

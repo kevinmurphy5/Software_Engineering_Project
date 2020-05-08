@@ -13,7 +13,7 @@
                     <td><%= b.id %></td>
                     <td>$ <%= b.bid_amount %></td>
                     <td><%= b.auction_id %></td>
-                    <td><%= link_to "🔎", auction_path(auctions.find(params[:id] = b.auction_id)) %></td>
+                    <td><%= link_to "🔎", auction_path(auctions.find(b.auction_id)) %></td>
                 </tr>
             <% end %>
 
