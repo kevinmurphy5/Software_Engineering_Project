@@ -8,4 +8,14 @@ class StaticPagesController < ApplicationController
     end
 
   end
+
+  def index
+    auctions = Auction.all
+    respond_to do |format|
+        format.html {render :index, locals: {auctions: auctions}}
+    
+    end
+  end
+
+  
 end
