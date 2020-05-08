@@ -8,4 +8,9 @@ Rails.application.routes.draw do
 
   get 'auctions', to:'auctions#index', as: 'auctions'
   get 'auctions/:id', to:'auctions#details', as: 'auction'
+
+  get 'reviews', to: 'reviews#index', as: 'reviews'
+  get 'reviews/:id', to: 'reviews#details', as: 'review'
+
+  
 end

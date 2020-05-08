@@ -137,3 +137,12 @@ a3b4 = Bid.create!(
     bid_amount: 28.00
 )
 
+#reviews
+
+a3r1 = Review.create!(
+    title: "Good work!",
+    body: "Good work!",
+    rating: 10.00,
+    auction: a3,
+    user: alice
+)
