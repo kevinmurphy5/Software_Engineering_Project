@@ -27,34 +27,32 @@
     </head>
     <body>
 
-        <br>
-        <%= button_to "Create New Review", new_review_path, :class => "btn btn-dark", :method => "get" %>
-        <br>
+        <h5>Creating New Review</h5>
 
-        <% if reviews.length == 0 %>
-        
-        <h2>You don't have any reviews!</h2>
+        <%= form_with url: reviews_path, method: :post, local: true, scope: :review do |f| %>
+            <div>
+                <%= f.label :title %><br>
+                <%= f.text_field :title %>
+            </div>
+            
+            <div>
+                <%= f.label :body %><br>
+                <%= f.text_field :body %>
+            </div>
 
-        <% else %>
-        <table class="table">
-            <tr>
-                <th>Title</th>
-                <th>Review</th>
-                <th>Rating</th>
-            </tr>
+            <div>   
+                <%= f.label :rating %><br>
+                <%= f.number_field :rating %>
+            </div>
 
-            <% reviews.each do |a| %>
+            <div>
+                <%= f.label :auction_id %><br>
+                <%= f.number_field :auction_id %>
+            </div>
 
-            <tr>
-                <td><%= a.title %>
-                <td><%= a.body %>
-                <td><%= a.rating %>
-
-            </tr>
-
-            <% end %>
-
-        </table>
+            <div>
+                <%= f.submit "Create review"%>
+            </div>
         <% end %>
     </body>
 </html>
