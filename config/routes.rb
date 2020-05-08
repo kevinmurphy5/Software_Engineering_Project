@@ -7,15 +7,16 @@ Rails.application.routes.draw do
 	get 'index',	to: 'static_pages#index',	as: 'index'
 
 
-  	get	'auctions',		to:'auctions#index',	as: 'auctions'
+  get	'auctions',		to:'auctions#index',	as: 'auctions'
 	get 'auctions/new', to:'auctions#new',		as: 'new_auction'
 	post 'auctions',	to:'auctions#create'
 	get 'auctions/:id', to:'auctions#details',	as: 'auction'
 
-
 	get 'reviews', to: 'reviews#index', as: 'reviews'
 	get 'reviews/new', to: 'reviews#new', as: 'new_review'
-	get 'reviews', to: 'reviews#create'
+	post 'reviews', to: 'reviews#create'
  	get 'reviews/:id', to: 'reviews#details', as: 'review'
+	  
+	get 'bids', to: 'bids#index', as: 'bids'
   
 end
