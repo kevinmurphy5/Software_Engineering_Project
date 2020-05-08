@@ -63,6 +63,18 @@ a3 = Auction.create!(
     auction_ends: DateTime.new(2020, 4, 30, 0, 0, 0),
 )
 
+a4 = Auction.create!(
+    user: kevin,
+    item_name: "a pen",
+    item_description: "its a pen",
+    start_price: 20.00,
+    win_price: 1000.01,
+    image_path: 'DNE',
+    auction_open_status: false,
+    auction_ends: DateTime.new(2019, 4, 30, 0, 0, 0),
+)
+
+
 # Bids
 
 a1b1 = Bid.create!(
@@ -144,5 +156,12 @@ a3r1 = Review.create!(
     body: "Good work!",
     rating: 10.00,
     auction: a3,
+    user: alice
+)
+a4r1 = Review.create!(
+    title: "it is a pen!",
+    body: "it works!",
+    rating: 10.00,
+    auction: a4,
     user: alice
 )

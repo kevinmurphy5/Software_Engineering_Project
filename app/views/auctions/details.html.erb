@@ -73,5 +73,26 @@
         There are no bids on this item!
         <% end %>
 
+
+        <% if reviews.length > 0%>
+         <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Review</th>
+                <th>Rating</th>
+
+            </tr>
+            <% reviews.each do |r|%>
+            <tr>
+                <td><%= r.title %></td>
+                <td><%= r.body %></td>
+                <td><%= r.rating %></td>
+            </tr>
+            <% end %>
+        </table>
+        <% else %>
+        There are no reviews on this item!
+        <% end %>
+
     </body>
 </html>

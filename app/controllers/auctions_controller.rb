@@ -9,11 +9,12 @@ class AuctionsController < ApplicationController
     end
 
     def details
+        reviews = Review.where(auction_id: params[:id])
         auction = Auction.find(params[:id])
         bids = auction.bids
         bid = Bid.new
         respond_to do |format|
-            format.html {render :details, locals: {auction: auction, bids: bids, bid: bid}}
+            format.html {render :details, locals: {auction: auction, bids: bids, bid: bid, reviews: reviews}}
         end
     end
 
@@ -45,3 +46,5 @@ class AuctionsController < ApplicationController
         end
     end
 end
+
+
