@@ -89,7 +89,7 @@
                 <td><%= a.start_price %>
                 <td><%= a.win_price == 0 ? "Not closed" : a.win_price %>
                 <td><%= a.auction_open_status ? "Yes" : "No" %>
-                <td><%= link_to "Details", auction_path(a)%></td>
+                <td><%= link_to "🔎", auction_path(a)%></td>
             </tr>
 
             <% end %>
