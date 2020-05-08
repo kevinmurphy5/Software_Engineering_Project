@@ -15,4 +15,32 @@ class AuctionsController < ApplicationController
             format.html {render :details, locals: {auction: auction, bids: bids}}
         end
     end
+
+    def new
+        auction = Auction.new
+        respond_to do |format|
+            format.html {render :new, locals: {auction: auction}}
+        end
+    end
+
+    def create
+        auction = Auction.new(
+            params.require(:auction).permit(:item_name, :item_description, :start_price, :win_price, :auction_ends)
+        )
+        auction.auction_open_status = true
+        auction.image_path = ""
+        auction.user_id = current_user.id
+
+        respond_to do |format|
+            format.html do
+                if auction.save
+                    flash[:success] = "Auction created successfully"
+                    redirect_to auctions_url
+                else
+                    flash.now[:error] = "Error: Auction failed to create"
+                    render :new, locals: {auction: auction}
+                end
+            end
+        end
+    end
 end

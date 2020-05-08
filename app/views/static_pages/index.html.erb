@@ -63,6 +63,10 @@
                 </div>
             </div>
         </nav>
+        <br>
+        <%= button_to "Create New Auction", new_auction_path, :class => "btn btn-dark", :method => "get" %>
+        <br>
+
 
         <% if auctions.length == 0 %>
         
@@ -89,7 +93,7 @@
                 <td><%= a.start_price %>
                 <td><%= a.win_price == 0 ? "Not closed" : a.win_price %>
                 <td><%= a.auction_open_status ? "Yes" : "No" %>
-                <td><%= link_to "Details", auction_path(a)%></td>
+                <td><%= link_to "🔎", auction_path(a)%></td>
             </tr>
 
             <% end %>
