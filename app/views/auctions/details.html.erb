@@ -47,7 +47,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav ">
                     <li><%= link_to "Home", welcome_path %></li>
-                    <li class="active"><%= link_to "All Auctions", index_path %></li>
+					<li><%= link_to "All Auctions", index_path %></li>
                     <li><%= link_to "My Auctions", auctions_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -64,37 +64,40 @@
             </div>
         </nav>
 
-        <% if auctions.length == 0 %>
-        
-        <h2>There are no auctions!</h2>
+        Auction ID: <%= auction.id %>
+        <br><br>
+
+        <span>Item Name: <%= auction.item_name%>            </span><br>
+        Description: <%= auction.item_description%>         </span><br>
+        <% if auction.auction_open_status %>
+
+        <span>Win Price: <%= auction.win_price%>            </span><br>
 
         <% else %>
+
+        <span class="text-muted">Win Price: <%= auction.win_price%>     </span><br>
+
+        <% end %>
+		<br><br><br>
+
+
+        <% if bids.length > 0%>
         <table class="table">
             <tr>
-                <th>Item ID</th>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Start Price</th>
-                <th>Win Price</th>
-                <th>Auction Open</th>
-                <th>Details</th>
+                <th>User</th>
+                <th>Bid Amount</th>
             </tr>
-
-            <% auctions.each do |a| %>
-
+            <% bids.each do |b|%>
             <tr>
-                <td><%= a.id %><br>
-                <td><%= a.item_name %>
-                <td><%= a.item_description %>
-                <td><%= a.start_price %>
-                <td><%= a.win_price == 0 ? "Not closed" : a.win_price %>
-                <td><%= a.auction_open_status ? "Yes" : "No" %>
-                <td><%= link_to "Details", auction_path(a)%></td>
+                <td><%= b.user_id %></td>
+                <td><%= b.bid_amount %></td>
             </tr>
-
             <% end %>
-
         </table>
+        <% else %>
+        There are no bids on this item!
         <% end %>
+
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>
