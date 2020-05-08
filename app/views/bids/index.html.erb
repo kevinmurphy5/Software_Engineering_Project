@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <% if bids.length >0 %>
+            <table class="table">
+                <tr>
+                    <th>Bid ID</th>
+                    <th>Bid Amount</th>
+                    <th>Auction ID</th>
+                    <th>Auction Details</th>
+                </tr>
+            <% bids.each do |b| %>
+                <tr>
+                    <td><%= b.id %></td>
+                    <td>$ <%= b.bid_amount %></td>
+                    <td><%= b.auction_id %></td>
+                    <td><%= link_to "🔎", auction_path(auctions.find(params[:id] = b.auction_id)) %></td>
+                </tr>
+            <% end %>
+
+            </table>
+        <% else %>
+            You haven't placed any bids!
+            <br>
+        <% end %>
+
+    </body>
+</html>
