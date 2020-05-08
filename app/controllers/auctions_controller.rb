@@ -36,7 +36,7 @@ class AuctionsController < ApplicationController
             format.html do
                 if auction.save
                     flash[:success] = "Auction created successfully"
-                    redirect_to auctions_url
+                    redirect_to auction_url(Auction.find(auction.id))
                 else
                     flash.now[:error] = "Error: Auction failed to create"
                     render :new, locals: {auction: auction}
